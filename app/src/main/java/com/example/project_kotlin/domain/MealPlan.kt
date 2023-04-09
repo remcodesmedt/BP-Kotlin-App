@@ -3,7 +3,7 @@ package com.example.project_kotlin.domain
 import java.util.Date
 
 class MealPlan (
-    val startDate: Date,
-    val endDate: Date,
-    val dishes: Array<Dish?> = Array(7){null}
+    var startDate: Date,
+    var endDate: Date,
+    var dishes: Array<Dish?> = Array(7){null}
 )
