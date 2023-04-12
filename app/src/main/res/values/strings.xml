@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kotlin Applicatie</string>
+    <string name="app_name">Kotlin App</string>
     <string name="home">Home</string>
     <string name="gerechten">Gerechten</string>
     <string name="ingredienten">Ingrediënten</string>
