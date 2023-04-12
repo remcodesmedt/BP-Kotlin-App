@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home" />
+    <item
+        android:id="@+id/gerechten"
+        android:title="@string/gerechten"
+        android:icon="@drawable/ic_dinging"/>
+    <item
+        android:id="@+id/ingredienten"
+        android:title="@string/ingredienten"
+        android:icon="@drawable/ic_egg"/>
+    <item
+        android:id="@+id/planning"
+        android:title="@string/planning"
+        android:icon="@drawable/ic_menu_book"/>
+    <item
+        android:id="@+id/shoppinglist"
+        android:title="@string/shopping_list"
+        android:icon="@drawable/ic_receipt"/>
+</menu>
