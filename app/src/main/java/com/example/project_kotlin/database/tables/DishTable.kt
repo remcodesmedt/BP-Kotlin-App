@@ -1,8 +1,11 @@
 package com.example.project_kotlin.database.tables
 
+import com.example.project_kotlin.domain.Dish
+
 object DishTable {
     const val TABLE_NAME = "dish"
 
+    const val COLUMN_ID = "dishid"
     const val COLUMN_NAME = "name"
     const val COLUMN_DESCRIPTION = "description"
     const val COLUMN_IMAGE = "image"
@@ -13,15 +16,17 @@ object DishTable {
 
     const val CREATE_TABLE = """
         CREATE TABLE IF NOT EXISTS $TABLE_NAME (
-            id INTEGER PRIMARY KEY AUTOINCREMENT
+            $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
             $COLUMN_NAME TEXT,
             $COLUMN_DESCRIPTION TEXT,
             $COLUMN_IMAGE BLOB,
             $COLUMN_PREPARATION_TIME INTEGER,
             $COLUMN_SERVINGS INTEGER,
-            $COLUMN_INSTRUCTIONS TEXT,
+            $COLUMN_INSTRUCTIONS TEXT
         )
     """
 
+
     const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
 }
+

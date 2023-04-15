@@ -2,7 +2,9 @@ package com.example.project_kotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import com.example.project_kotlin.database.DBHelper
 import com.example.project_kotlin.databinding.ActivityMainBinding
 import com.example.project_kotlin.screens.*
 
@@ -16,6 +18,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(Home())
 
+        setBottomNavListener()
+
+        //init the db
+        DBHelper.init(applicationContext)
+    }
+
+    private fun setBottomNavListener(){
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId){
                 R.id.home -> replaceFragment(Home())
@@ -29,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
     }
 
     private fun replaceFragment(fragment: Fragment){

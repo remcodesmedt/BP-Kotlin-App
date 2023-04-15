@@ -1,6 +1,7 @@
 package com.example.project_kotlin.domain
 
 class Dish(
+    var id: Int,
     var name: String,
     var description: String?,
     var image: ByteArray,
