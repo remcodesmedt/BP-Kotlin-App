@@ -8,5 +8,4 @@ class Dish(
     var servings: Int,
     var instructions: List<String>?, //wordt JSON in db
     var ingredients: List<IngredientAmount>,
-    var tags: List<Tag>?
 )
