@@ -21,6 +21,8 @@ object IngredientMock : MockingInterface{
     }
 
     override fun logMocks(){
+        Log.i("nice", "Ingredient----------------------------------------")
+
         //get ingredients from the db
         val ingredients = IngredientInterface.getItems()
         //just log them for now

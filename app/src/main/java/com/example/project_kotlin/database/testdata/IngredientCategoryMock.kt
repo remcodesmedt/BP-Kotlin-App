@@ -25,6 +25,7 @@ object IngredientCategoryMock {
     }
 
     fun logMocks(){
+        Log.i("nice", "IngredientCategory----------------------------------------")
         //get ingredientcategories from the db
         val categories = IngredientCategoryInterface.getItems()
         //just log them for now

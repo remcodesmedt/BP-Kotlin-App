@@ -5,7 +5,7 @@ object IngredientTable {
 
     const val COLUMN_ID = "ingredientid"
     const val COLUMN_NAME = "name"
-    const val COLUMN_UNIT = "description"
+    const val COLUMN_UNIT = "unit"
 
     const val COLUMN_INGREDIENTCATEGORY = "ingredientcategory"
 
