@@ -6,9 +6,9 @@ object DishTable {
     const val TABLE_NAME = "dish"
 
     const val COLUMN_ID = "dishid"
-    const val COLUMN_NAME = "name"
-    const val COLUMN_DESCRIPTION = "description"
-    const val COLUMN_IMAGE = "image"
+    const val COLUMN_NAME = "dishname"
+    const val COLUMN_DESCRIPTION = "dishdescription"
+    const val COLUMN_IMAGE = "dishimage"
     const val COLUMN_PREPARATION_TIME = "preparationTime"
     const val COLUMN_SERVINGS = "servings"
     const val COLUMN_INSTRUCTIONS = "instructions"

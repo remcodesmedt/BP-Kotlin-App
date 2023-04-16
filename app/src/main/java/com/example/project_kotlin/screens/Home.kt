@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.project_kotlin.database.interfaces.IngredientCategoryInterface
 import com.example.project_kotlin.database.testdata.IngredientCategoryMock
 import com.example.project_kotlin.database.testdata.IngredientMock
+import com.example.project_kotlin.database.testdata.ShoppingListMock
 import com.example.project_kotlin.databinding.FragmentHomeBinding
 
 class Home : Fragment() {
@@ -38,12 +39,14 @@ class Home : Fragment() {
     private fun fillDb() {
         IngredientCategoryMock.insertMocks()
         IngredientMock.insertMocks()
+        ShoppingListMock.insertMocks()
         //fill other tables later
     }
 
     private fun logItems() {
         IngredientCategoryMock.logMocks()
         IngredientMock.logMocks()
+        ShoppingListMock.logMocks()
         //log other tables later
     }
 

@@ -20,10 +20,10 @@ object IngredientInterface {
             "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_NAME}",
             IngredientTable.COLUMN_UNIT,
             "${IngredientCategoryTable.TABLE_NAME}.${IngredientCategoryTable.COLUMN_NAME} AS category_name",
-            "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORY}"
+            "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORYID}"
         )
         val joinClause = "${IngredientTable.TABLE_NAME} INNER JOIN ${IngredientCategoryTable.TABLE_NAME} " +
-                "ON ${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORY} = " +
+                "ON ${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORYID} = " +
                 "${IngredientCategoryTable.TABLE_NAME}.${IngredientCategoryTable.COLUMN_ID}"
         val cursor = db.query(joinClause, columns, null, null, null, null, null)
 
@@ -33,7 +33,7 @@ object IngredientInterface {
             val id = cursor.getInt(cursor.getColumnIndex(IngredientTable.COLUMN_ID))
             val name = cursor.getString(cursor.getColumnIndex(IngredientTable.COLUMN_NAME))
             val unitString = cursor.getString(cursor.getColumnIndex(IngredientTable.COLUMN_UNIT))
-            val categoryid = cursor.getInt(cursor.getColumnIndex(IngredientTable.COLUMN_INGREDIENTCATEGORY))
+            val categoryid = cursor.getInt(cursor.getColumnIndex(IngredientTable.COLUMN_INGREDIENTCATEGORYID))
             val categoryname = cursor.getString(cursor.getColumnIndex("category_name"))
 
             var unit: EUnit
@@ -59,7 +59,7 @@ object IngredientInterface {
         val values = ContentValues().apply {
             put(IngredientTable.COLUMN_NAME, ingredient.name)
             put(IngredientTable.COLUMN_UNIT, ingredient.unit.toString())
-            put(IngredientTable.COLUMN_INGREDIENTCATEGORY, ingredient.category.id)
+            put(IngredientTable.COLUMN_INGREDIENTCATEGORYID, ingredient.category.id)
         }
 
         // Insert the values into the IngredientCategoryTable

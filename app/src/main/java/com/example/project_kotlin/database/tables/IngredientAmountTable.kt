@@ -4,7 +4,7 @@ object IngredientAmountTable {
     const val TABLE_NAME = "ingredientamount"
 
     const val COLUMN_ID = "ingredientamountid"
-    const val COLUMN_AMOUNT = "amount"
+    const val COLUMN_AMOUNT = "ingramount"
     const val COLUMN_SHOPPINGLIST_ID = "shoppinglistid"
     const val COLUMN_DISH_ID = "dishid"
     const val COLUMN_INGREDIENT_ID = "ingredientid"

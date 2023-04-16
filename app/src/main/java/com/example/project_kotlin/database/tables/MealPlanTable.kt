@@ -4,8 +4,8 @@ object MealPlanTable {
     const val TABLE_NAME = "mealplan"
 
     const val COLUMN_ID = "mealplanid"
-    const val COLUMN_START_DATE = "startdate"
-    const val COLUMN_END_DATE = "enddate"
+    const val COLUMN_START_DATE = "mpstartdate"
+    const val COLUMN_END_DATE = "mpenddate"
 
     const val CREATE_TABLE = """
         CREATE TABLE IF NOT EXISTS $TABLE_NAME (

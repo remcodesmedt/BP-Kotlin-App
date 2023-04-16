@@ -4,7 +4,7 @@ object IngredientCategoryTable {
     const val TABLE_NAME = "ingredientcategory"
 
     const val COLUMN_ID = "ingredientcategoryid"
-    const val COLUMN_NAME = "name"
+    const val COLUMN_NAME = "ingredientcategoryname"
 
     const val CREATE_TABLE = """
         CREATE TABLE IF NOT EXISTS $TABLE_NAME (

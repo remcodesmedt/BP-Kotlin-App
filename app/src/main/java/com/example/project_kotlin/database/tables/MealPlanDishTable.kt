@@ -4,9 +4,9 @@ object MealPlanDishTable {
     const val TABLE_NAME = "mealplan_dish"
 
     const val COLUMN_ID = "mealplandishid"
-    const val COLUMN_MEALPLAN_ID = "mealplan_id"
-    const val COLUMN_DISH_ID = "dish_id"
-    const val COLUMN_DAY_OF_WEEK = "day_of_week"
+    const val COLUMN_MEALPLAN_ID = "mealplanid"
+    const val COLUMN_DISH_ID = "dishid"
+    const val COLUMN_DAY_OF_WEEK = "dayofweek"
 
     const val CREATE_TABLE = """
         CREATE TABLE IF NOT EXISTS $TABLE_NAME (

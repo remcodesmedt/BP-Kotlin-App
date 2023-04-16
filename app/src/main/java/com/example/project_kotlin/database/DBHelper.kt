@@ -14,6 +14,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+        Log.i("nice", "creating tables")
         db?.execSQL(IngredientCategoryTable.CREATE_TABLE)
         db?.execSQL(IngredientTable.CREATE_TABLE)
         db?.execSQL(ShoppingListTable.CREATE_TABLE)
@@ -28,6 +29,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     fun dropAll(db: SQLiteDatabase?){
+        Log.i("nice", "dropping tables")
         db?.execSQL(IngredientCategoryTable.DROP_TABLE)
         db?.execSQL(IngredientTable.DROP_TABLE)
         db?.execSQL(ShoppingListTable.DROP_TABLE)
