@@ -9,11 +9,13 @@ import com.example.project_kotlin.domain.IngredientCategory
 object IngredientCategoryInterface {
 
     @SuppressLint("Range")
-    fun getItems() : List<IngredientCategory>{
+    fun getItems(): List<IngredientCategory> {
         val db = DBHelper.getDB()
 
-        val columns = arrayOf(IngredientCategoryTable.COLUMN_ID, IngredientCategoryTable.COLUMN_NAME)
-        val cursor = db.query(IngredientCategoryTable.TABLE_NAME, columns, null, null, null, null, null)
+        val columns =
+            arrayOf(IngredientCategoryTable.COLUMN_ID, IngredientCategoryTable.COLUMN_NAME)
+        val cursor =
+            db.query(IngredientCategoryTable.TABLE_NAME, columns, null, null, null, null, null)
 
         val categories = mutableListOf<IngredientCategory>()
 
@@ -29,20 +31,17 @@ object IngredientCategoryInterface {
     }
 
     @SuppressLint("Range")
-    fun insertItems(ingredientCategories: List<IngredientCategory>){
+    fun insertItem(ingredientCategory: IngredientCategory) {
         val db = DBHelper.getDB()
 
-        ingredientCategories.forEach {
-            // Create a ContentValues object to hold the values to insert
-            val values = ContentValues().apply {
-                put(IngredientCategoryTable.COLUMN_NAME, it.name)
-            }
-
-            // Insert the values into the IngredientCategoryTable
-            db.insert(IngredientCategoryTable.TABLE_NAME, null, values)
+        // Create a ContentValues object to hold the values to insert
+        val values = ContentValues().apply {
+            put(IngredientCategoryTable.COLUMN_NAME, ingredientCategory.name)
         }
-    }
 
+        // Insert the values into the IngredientCategoryTable
+        db.insert(IngredientCategoryTable.TABLE_NAME, null, values)
+    }
 
 }
 

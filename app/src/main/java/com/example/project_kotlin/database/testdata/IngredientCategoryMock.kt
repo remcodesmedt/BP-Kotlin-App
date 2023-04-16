@@ -20,8 +20,10 @@ object IngredientCategoryMock {
             IngredientCategory(0, "Sweets"),
         )
 
-        //insert them into the db
-        IngredientCategoryInterface.insertItems(categories)
+        categories.forEach{
+            //insert them into the db
+            IngredientCategoryInterface.insertItem(it)
+        }
     }
 
     fun logMocks(){

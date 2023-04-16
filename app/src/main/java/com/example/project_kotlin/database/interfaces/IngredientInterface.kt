@@ -52,20 +52,18 @@ object IngredientInterface {
     }
 
 
-    fun insertItems(ingredients: List<Ingredient>){
+    fun insertItem(ingredient: Ingredient){
         val db = DBHelper.getDB()
 
-        ingredients.forEach {
-            // Create a ContentValues object to hold the values to insert
-            val values = ContentValues().apply {
-                put(IngredientTable.COLUMN_NAME, it.name)
-                put(IngredientTable.COLUMN_UNIT, it.unit.toString())
-                put(IngredientTable.COLUMN_INGREDIENTCATEGORY, it.category.id)
-            }
-
-            // Insert the values into the IngredientCategoryTable
-            db.insert(IngredientTable.TABLE_NAME, null, values)
+        // Create a ContentValues object to hold the values to insert
+        val values = ContentValues().apply {
+            put(IngredientTable.COLUMN_NAME, ingredient.name)
+            put(IngredientTable.COLUMN_UNIT, ingredient.unit.toString())
+            put(IngredientTable.COLUMN_INGREDIENTCATEGORY, ingredient.category.id)
         }
+
+        // Insert the values into the IngredientCategoryTable
+        db.insert(IngredientTable.TABLE_NAME, null, values)
     }
 
 }

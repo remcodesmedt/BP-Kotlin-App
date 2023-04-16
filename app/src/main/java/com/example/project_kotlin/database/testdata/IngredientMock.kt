@@ -1,7 +1,6 @@
 package com.example.project_kotlin.database.testdata
 
 import android.util.Log
-import com.example.project_kotlin.database.interfaces.IngredientCategoryInterface
 import com.example.project_kotlin.database.interfaces.IngredientInterface
 import com.example.project_kotlin.domain.EUnit
 import com.example.project_kotlin.domain.Ingredient
@@ -16,8 +15,10 @@ object IngredientMock : MockingInterface{
             Ingredient(0, "kweetni part 500", EUnit.g, IngredientCategory(6, ""))
         )
 
-        //insert them into the db
-        IngredientInterface.insertItems(ingredients)
+        ingredients.forEach{
+            //insert them into the db
+            IngredientInterface.insertItem(it)
+        }
     }
 
     override fun logMocks(){
