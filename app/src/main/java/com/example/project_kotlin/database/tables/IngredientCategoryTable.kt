@@ -14,4 +14,7 @@ object IngredientCategoryTable {
     """
 
     const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
+
+
+    val COLUMNS_FOR_SELECT = arrayOf(IngredientCategoryTable.COLUMN_ID, IngredientCategoryTable.COLUMN_NAME)
 }

@@ -12,10 +12,10 @@ object IngredientCategoryInterface {
     fun getItems(): List<IngredientCategory> {
         val db = DBHelper.getDB()
 
-        val columns =
-            arrayOf(IngredientCategoryTable.COLUMN_ID, IngredientCategoryTable.COLUMN_NAME)
+        val columns = IngredientCategoryTable.COLUMNS_FOR_SELECT
         val cursor =
             db.query(IngredientCategoryTable.TABLE_NAME, columns, null, null, null, null, null)
+
 
         val categories = mutableListOf<IngredientCategory>()
 

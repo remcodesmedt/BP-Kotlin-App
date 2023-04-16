@@ -15,16 +15,8 @@ object IngredientInterface {
     fun getItems(): List<Ingredient> {
         val db = DBHelper.getDB()
 
-        val columns = arrayOf(
-            IngredientTable.COLUMN_ID,
-            "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_NAME}",
-            IngredientTable.COLUMN_UNIT,
-            "${IngredientCategoryTable.TABLE_NAME}.${IngredientCategoryTable.COLUMN_NAME} AS category_name",
-            "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORYID}"
-        )
-        val joinClause = "${IngredientTable.TABLE_NAME} INNER JOIN ${IngredientCategoryTable.TABLE_NAME} " +
-                "ON ${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORYID} = " +
-                "${IngredientCategoryTable.TABLE_NAME}.${IngredientCategoryTable.COLUMN_ID}"
+        val columns = IngredientTable.COLUMNS_FOR_SELECT
+        val joinClause = IngredientTable.JOIN_CLAUSE
         val cursor = db.query(joinClause, columns, null, null, null, null, null)
 
         val ingredients = mutableListOf<Ingredient>()
