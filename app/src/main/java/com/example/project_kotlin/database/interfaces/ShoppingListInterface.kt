@@ -31,7 +31,6 @@ object ShoppingListInterface {
         )
 
         val shoppingLists = mutableListOf<ShoppingList>()
-        val ingredientAmounts = mutableListOf<IngredientAmount>()
         var currentShoppingList: ShoppingList? = null
 
         while (cursor.moveToNext()) {

@@ -12,7 +12,7 @@ object IngredientAmountTable {
     const val CREATE_TABLE = """
         CREATE TABLE IF NOT EXISTS $TABLE_NAME (
             $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-            $COLUMN_AMOUNT INTEGER,
+            $COLUMN_AMOUNT DOUBLE,
             $COLUMN_SHOPPINGLIST_ID INTEGER NULL,
             $COLUMN_DISH_ID INTEGER NULL,                    
             $COLUMN_INGREDIENT_ID INTEGER NOT NULL,
