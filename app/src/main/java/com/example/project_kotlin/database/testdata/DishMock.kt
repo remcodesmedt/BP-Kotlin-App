@@ -10,17 +10,6 @@ import com.example.project_kotlin.domain.*
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
-
-//TODO verzetten nr ergens anders
-//fun imageToByteArray(filePath: String): ByteArray {
-//    val file = File(filePath)
-//    val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-//    val stream = ByteArrayOutputStream()
-//    bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
-//    return stream.toByteArray()
-//}
-
-
 class DishMock(private val context: Context) {
     private fun imageToByteArray(id: Int):ByteArray {
         val inputStream: InputStream = context.resources.openRawResource(id)
