@@ -21,4 +21,23 @@ object MealPlanDishTable {
     """
 
     const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
+
+    val COLUMNS_FOR_SELECT = arrayOf(
+        COLUMN_ID,
+        "$TABLE_NAME.$COLUMN_MEALPLAN_ID", //fk naar mealplantable
+        "$TABLE_NAME.$COLUMN_DISH_ID", //fk naar dishtable
+        COLUMN_DAY_OF_WEEK,
+    )
+        .plus(MealPlanTable.COLUMNS_FOR_SELECT)
+        .plus(DishTable.COLUMNS_FOR_SELECT)
+
+    val JOIN_CLAUSE = """
+        ${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_ID}
+               = ${MealPlanDishTable.TABLE_NAME}.$COLUMN_MEALPLAN_ID
+        AND
+        ${DishTable.TABLE_NAME}.${DishTable.COLUMN_ID}
+               = ${MealPlanDishTable.TABLE_NAME}.$COLUMN_DISH_ID
+        AND
+        ${DishTable.JOIN_CLAUSE}
+    """
 }

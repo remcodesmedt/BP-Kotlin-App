@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.project_kotlin.database.testdata.DishMock
-import com.example.project_kotlin.database.testdata.IngredientCategoryMock
-import com.example.project_kotlin.database.testdata.IngredientMock
-import com.example.project_kotlin.database.testdata.ShoppingListMock
+import com.example.project_kotlin.database.testdata.*
 import com.example.project_kotlin.databinding.FragmentHomeBinding
 import kotlinx.coroutines.*
 
@@ -48,19 +45,19 @@ class Home : Fragment() {
         IngredientMock.insertMocks()
         ShoppingListMock.insertMocks()
         DishMock(requireContext()).insertMocks()
-        //fill other tables later
+        MealPlanMock.insertMocks()
     }
 
     private fun logItems() {
         IngredientCategoryMock.logMocks()
         IngredientMock.logMocks()
         ShoppingListMock.logMocks()
-        var dish = DishMock(requireContext()).logMocks()
-        var bitmap = BitmapFactory.decodeByteArray(dish.image, 0, dish.image.size)
+        val dish = DishMock(requireContext()).logMocks()
+        val bitmap = BitmapFactory.decodeByteArray(dish.image, 0, dish.image.size)
         activity?.runOnUiThread{
             binding.testImage.setImageBitmap(bitmap)
         }
-        //log other tables later
+        MealPlanMock.logMocks()
     }
 
 }

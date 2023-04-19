@@ -21,6 +21,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db?.execSQL(DishTable.CREATE_TABLE)
         db?.execSQL(IngredientAmountTable.CREATE_TABLE)
         db?.execSQL(MealPlanTable.CREATE_TABLE)
+        db?.execSQL(MealPlanDishTable.CREATE_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -36,6 +37,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db?.execSQL(DishTable.DROP_TABLE)
         db?.execSQL(IngredientAmountTable.DROP_TABLE)
         db?.execSQL(MealPlanTable.DROP_TABLE)
+        db?.execSQL(MealPlanDishTable.DROP_TABLE)
     }
 }
 

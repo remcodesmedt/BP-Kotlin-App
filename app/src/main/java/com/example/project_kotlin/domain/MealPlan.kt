@@ -1,10 +1,10 @@
 package com.example.project_kotlin.domain
 
-import java.util.Date
+import java.time.LocalDate
 
-class MealPlan (
+class MealPlan(
     var id: Int,
-    var startDate: Date,
-    var endDate: Date,
+    var startDate: LocalDate,
+    var endDate: LocalDate,
     var dishes: Array<Dish?> = Array(7){null}
 )
