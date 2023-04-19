@@ -34,7 +34,7 @@ object ShoppingListMock {
 
         //just log them for now
         for (l in shoppingLists) {
-            Log.i("nice", "${l.id}: ${l.name}, \ningredients:")
+            Log.i("nice", "${l.id}: ${l.name}:\n")
             for (i in l.ingredients){
                 Log.i("nice", "- ${i.ingredient.name}: ${i.amount}${i.ingredient.unit}")
             }

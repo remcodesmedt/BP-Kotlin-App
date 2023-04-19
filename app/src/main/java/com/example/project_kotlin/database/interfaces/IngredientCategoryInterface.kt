@@ -16,7 +16,6 @@ object IngredientCategoryInterface {
         val cursor =
             db.query(IngredientCategoryTable.TABLE_NAME, columns, null, null, null, null, null)
 
-
         val categories = mutableListOf<IngredientCategory>()
 
         while (cursor.moveToNext()) {

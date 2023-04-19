@@ -26,7 +26,43 @@ object DishTable {
         )
     """
 
-
     const val DROP_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
+
+    val COLUMNS_FOR_SELECT = arrayOf(
+        "$TABLE_NAME.$COLUMN_ID",
+        COLUMN_NAME,
+        COLUMN_DESCRIPTION,
+        COLUMN_IMAGE,
+        COLUMN_PREPARATION_TIME,
+        COLUMN_SERVINGS,
+        COLUMN_INSTRUCTIONS,
+
+        //ingredientamount
+        "${IngredientAmountTable.TABLE_NAME}.${IngredientAmountTable.COLUMN_ID}",
+        "${IngredientAmountTable.TABLE_NAME}.${IngredientAmountTable.COLUMN_AMOUNT}",
+        "${IngredientAmountTable.TABLE_NAME}.${IngredientAmountTable.COLUMN_DISH_ID}", //=id of this table
+        "${IngredientAmountTable.TABLE_NAME}.${IngredientAmountTable.COLUMN_INGREDIENT_ID}", //=id of table ingredient
+
+        //ingredient
+        "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_ID}",
+        "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_NAME}",
+        "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_UNIT}",
+        "${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORYID}", //=id of table ingredientcategory
+
+        //ingredientCategory
+        "${IngredientCategoryTable.TABLE_NAME}.${IngredientCategoryTable.COLUMN_ID}",
+        "${IngredientCategoryTable.TABLE_NAME}.${IngredientCategoryTable.COLUMN_NAME}"
+    )
+
+    val JOIN_CLAUSE = """
+        ${TABLE_NAME}.${COLUMN_ID} 
+            = ${IngredientAmountTable.TABLE_NAME}.${IngredientAmountTable.COLUMN_DISH_ID}
+        AND
+        ${IngredientAmountTable.TABLE_NAME}.${IngredientAmountTable.COLUMN_INGREDIENT_ID} 
+            = ${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_ID}
+        AND
+        ${IngredientTable.TABLE_NAME}.${IngredientTable.COLUMN_INGREDIENTCATEGORYID} 
+            = ${IngredientCategoryTable.TABLE_NAME}.${IngredientCategoryTable.COLUMN_ID}
+    """
 }
 

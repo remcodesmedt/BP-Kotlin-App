@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.project_kotlin.database.interfaces.IngredientCategoryInterface
+import com.example.project_kotlin.database.testdata.DishMock
 import com.example.project_kotlin.database.testdata.IngredientCategoryMock
 import com.example.project_kotlin.database.testdata.IngredientMock
 import com.example.project_kotlin.database.testdata.ShoppingListMock
 import com.example.project_kotlin.databinding.FragmentHomeBinding
+import kotlinx.coroutines.*
 
 class Home : Fragment() {
 
@@ -29,10 +30,15 @@ class Home : Fragment() {
 
     private fun setupOnClickListeners() {
         binding.FABAddDataDb.setOnClickListener {
-            fillDb()
-            binding.txtHome.text = "done, see logs \"nice\""
-            logItems()
+            CoroutineScope(Dispatchers.IO).launch {
+                fillDb()
+                withContext(Dispatchers.Main) {
+                    binding.txtHome.text = "done, see logs \"nice\""
+                }
+                logItems()
+            }
         }
+
     }
 
 
@@ -40,6 +46,7 @@ class Home : Fragment() {
         IngredientCategoryMock.insertMocks()
         IngredientMock.insertMocks()
         ShoppingListMock.insertMocks()
+        DishMock(requireContext()).insertMocks()
         //fill other tables later
     }
 
@@ -47,6 +54,7 @@ class Home : Fragment() {
         IngredientCategoryMock.logMocks()
         IngredientMock.logMocks()
         ShoppingListMock.logMocks()
+        DishMock(requireContext()).logMocks()
         //log other tables later
     }
 
