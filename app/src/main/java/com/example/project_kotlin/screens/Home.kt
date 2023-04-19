@@ -1,5 +1,6 @@
 package com.example.project_kotlin.screens
 
+import android.graphics.BitmapFactory
 import android.util.Log
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -54,7 +55,11 @@ class Home : Fragment() {
         IngredientCategoryMock.logMocks()
         IngredientMock.logMocks()
         ShoppingListMock.logMocks()
-        DishMock(requireContext()).logMocks()
+        var dish = DishMock(requireContext()).logMocks()
+        var bitmap = BitmapFactory.decodeByteArray(dish.image, 0, dish.image.size)
+        activity?.runOnUiThread{
+            binding.testImage.setImageBitmap(bitmap)
+        }
         //log other tables later
     }
 

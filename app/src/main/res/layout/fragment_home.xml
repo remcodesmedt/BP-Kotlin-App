@@ -28,8 +28,19 @@
         android:clickable="true"
         android:contentDescription="Add predifined data to the database"
         android:src="@android:drawable/ic_input_add"
-        app:tint="@android:color/white"
         app:backgroundTint="#6200EA"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/testImage"
+        android:layout_width="186dp"
+        android:layout_height="186dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

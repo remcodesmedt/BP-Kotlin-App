@@ -61,7 +61,7 @@ class DishMock(private val context: Context) {
         DishInterface.insertItem(dish2)
     }
 
-    fun logMocks() {
+    fun logMocks() : Dish {
         Log.i("nice", "Dish----------------------------------------")
 
         //get dishes from the db
@@ -88,6 +88,7 @@ class DishMock(private val context: Context) {
                 Log.i("nice", "- ${i.ingredient.name}: ${i.amount}${i.ingredient.unit}")
             }
         }
+        return dishes.first()
     }
 
 }
