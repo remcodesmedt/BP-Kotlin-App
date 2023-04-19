@@ -19,10 +19,11 @@ object ShoppingListMock {
         )
 
         val shoppingList1 = ShoppingList(0, "mijne lijst", listOf(ingrAmount1, ingrAmount2))
+        val shoppingList2 = ShoppingList(0, "mijne lijst part 2", listOf(ingrAmount2, ingrAmount1))
 
         //insert list into db
         ShoppingListInterface.insertItem(shoppingList1)
-        ShoppingListInterface.insertItem(shoppingList1)
+        ShoppingListInterface.insertItem(shoppingList2)
     }
 
     fun logMocks() {

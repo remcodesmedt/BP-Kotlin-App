@@ -14,7 +14,7 @@ object ShoppingListInterface {
 
     @SuppressLint("Range")
     fun getItems() : List<ShoppingList> {
-        Log.i("nice", "getting items...")
+//        Log.i("nice", "getting items...")
         val db = DBHelper.getDB()
         val columns = ShoppingListTable.COLUMNS_FOR_SELECT
         val joinClause = ShoppingListTable.JOIN_CLAUSE
@@ -27,7 +27,7 @@ object ShoppingListInterface {
             null,
             null,
             null,
-            null
+            "${ShoppingListTable.TABLE_NAME}.${ShoppingListTable.COLUMN_ID}"
         )
 
         val shoppingLists = mutableListOf<ShoppingList>()
