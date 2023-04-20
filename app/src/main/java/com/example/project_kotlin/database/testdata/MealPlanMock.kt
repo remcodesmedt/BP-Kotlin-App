@@ -39,9 +39,9 @@ object MealPlanMock {
         Log.i("nice", "MealPlan----------------------------------------")
 
         //get mealplans from the db
-        val mealPlans = MealPlanInterface.getItemsForWeek(LocalDate.of(2023, 4, 19))
+        val mealPlans = MealPlanInterface.getItems(null)
         mealPlans.forEach { mealPlan ->
-            Log.i("nice", "${mealPlan.id}: week van ${mealPlan.startDate} - ${mealPlan.endDate}")
+            Log.i("nice", "mealplan ${mealPlan.id}: week van ${mealPlan.startDate} - ${mealPlan.endDate}")
             var i = 1;
             mealPlan.dishes.forEach {
                 Log.i("nice", "-Dish ${i++}: ")

@@ -8,30 +8,37 @@ import com.example.project_kotlin.domain.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import java.time.LocalDate
-import java.util.*
 import android.util.Log
 
 //!!uses mealplandishtable to read data!!
 object MealPlanInterface {
     @SuppressLint("Range")
-    fun getItemsForWeek(date: LocalDate): List<MealPlan> {
+    fun getItems(date: LocalDate?): List<MealPlan> {
         val db = DBHelper.getDB()
 
         val columns = MealPlanDishTable.COLUMNS_FOR_SELECT
         val joinClause = MealPlanDishTable.JOIN_CLAUSE
 
-        val selection =
-            "${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_START_DATE} <= DATE(?) AND ${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_END_DATE} >= DATE(?)"
-        val selectionArgs = arrayOf(date.toString(), date.toString())
+
+        val filterDate = date != null
+
+        var selection: String = joinClause
+        var selectionArgs: Array<String>? = null
+        if (filterDate){
+            selection +=
+                " AND ${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_START_DATE} <= DATE(?) AND ${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_END_DATE} >= DATE(?)"
+            selectionArgs = arrayOf(date.toString(), date.toString())
+        }
+
 
         val cursor = db.query(
             "${MealPlanTable.TABLE_NAME}, ${MealPlanDishTable.TABLE_NAME}, ${DishTable.TABLE_NAME}, ${IngredientAmountTable.TABLE_NAME}, " + "${IngredientTable.TABLE_NAME}, ${IngredientCategoryTable.TABLE_NAME}",
             columns,
-            "$joinClause AND $selection",
+            "$selection",
             selectionArgs,
             null,
             null,
-            "${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_ID}"
+            "${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_ID}, ${DishTable.TABLE_NAME}.${DishTable.COLUMN_ID}"
         )
 
         val mealplans = mutableListOf<MealPlan>()
@@ -39,10 +46,10 @@ object MealPlanInterface {
         var currentDishes = mutableListOf<Dish>()
         var currentDish: Dish? = null
 
+        var teller = 1
         while (cursor.moveToNext()) {
             val mealPlanId =
                 cursor.getInt(cursor.getColumnIndex(MealPlanTable.COLUMN_ID))
-//            Log.i("nice", "mealplanid: $mealPlanId")
             val mpStartDateString =
                 cursor.getString(cursor.getColumnIndex(MealPlanTable.COLUMN_START_DATE))
             val mpStartDate = LocalDate.parse(mpStartDateString)
@@ -51,7 +58,6 @@ object MealPlanInterface {
             val mpEndDate = LocalDate.parse(mpEndDateString)
 
             val dishId = cursor.getInt(cursor.getColumnIndex(DishTable.COLUMN_ID))
-//            Log.i("nice", "-dishid: $dishId")
             val dishName = cursor.getString(cursor.getColumnIndex(DishTable.COLUMN_NAME))
             val dishDescription =
                 cursor.getString(cursor.getColumnIndex(DishTable.COLUMN_DESCRIPTION))
@@ -65,7 +71,6 @@ object MealPlanInterface {
 
             val ingredientAmountId =
                 cursor.getInt(cursor.getColumnIndex(IngredientAmountTable.COLUMN_ID))
-//            Log.i("nice", "--ingramountid: $ingredientAmountId")
             val ingredientAmount =
                 cursor.getDouble(cursor.getColumnIndex(IngredientAmountTable.COLUMN_AMOUNT))
 
@@ -106,19 +111,19 @@ object MealPlanInterface {
                 }
 
                 // Create new mealplan with new dish
+                currentDish = Dish(
+                    dishId,
+                    dishName,
+                    dishDescription,
+                    dishImage,
+                    dishPrepTime,
+                    dishServings,
+                    dishInstructionsList,
+                    listOf(ingredientAmountObj)
+                )
+
                 currentMealPlan = MealPlan(
-                    mealPlanId, mpStartDate, mpEndDate, arrayOf(
-                        Dish(
-                            dishId,
-                            dishName,
-                            dishDescription,
-                            dishImage,
-                            dishPrepTime,
-                            dishServings,
-                            dishInstructionsList,
-                            listOf(ingredientAmountObj)
-                        )
-                    )
+                    mealPlanId, mpStartDate, mpEndDate, arrayOf(currentDish)
                 )
             } else { //same mealplan, so update the dishes OR update the dish its ingredients
                 // Check if we're still processing the same dish
