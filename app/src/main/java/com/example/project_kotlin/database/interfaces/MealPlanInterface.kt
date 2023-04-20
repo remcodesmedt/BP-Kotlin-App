@@ -42,7 +42,7 @@ object MealPlanInterface {
         while (cursor.moveToNext()) {
             val mealPlanId =
                 cursor.getInt(cursor.getColumnIndex(MealPlanTable.COLUMN_ID))
-            Log.i("nice", "mealplanid: $mealPlanId")
+//            Log.i("nice", "mealplanid: $mealPlanId")
             val mpStartDateString =
                 cursor.getString(cursor.getColumnIndex(MealPlanTable.COLUMN_START_DATE))
             val mpStartDate = LocalDate.parse(mpStartDateString)
@@ -51,7 +51,7 @@ object MealPlanInterface {
             val mpEndDate = LocalDate.parse(mpEndDateString)
 
             val dishId = cursor.getInt(cursor.getColumnIndex(DishTable.COLUMN_ID))
-            Log.i("nice", "-dishid: $dishId")
+//            Log.i("nice", "-dishid: $dishId")
             val dishName = cursor.getString(cursor.getColumnIndex(DishTable.COLUMN_NAME))
             val dishDescription =
                 cursor.getString(cursor.getColumnIndex(DishTable.COLUMN_DESCRIPTION))
@@ -65,7 +65,7 @@ object MealPlanInterface {
 
             val ingredientAmountId =
                 cursor.getInt(cursor.getColumnIndex(IngredientAmountTable.COLUMN_ID))
-            Log.i("nice", "--ingramountid: $ingredientAmountId")
+//            Log.i("nice", "--ingramountid: $ingredientAmountId")
             val ingredientAmount =
                 cursor.getDouble(cursor.getColumnIndex(IngredientAmountTable.COLUMN_AMOUNT))
 
