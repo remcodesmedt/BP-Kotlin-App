@@ -14,20 +14,21 @@ object MealPlanMock {
         //actually only id matters here,
         val dish1 = Dish(1)
         val dish2 = Dish(2)
+        val dish3 = Dish(3)
 
         //id doesnt matter
         val mealplan = MealPlan(
             0,
             startDate,
             endDate,
-            arrayOf(dish1, dish2, dish1, dish2, dish1, dish2, dish1)
+            arrayOf(dish1, dish2, dish1, dish2, dish1, dish2, dish3)
         )
 
         val mealplan2 = MealPlan(
             0,
             startDate.plusWeeks(1),
             endDate.plusWeeks(1),
-            arrayOf(dish1, dish2, dish1, dish2, dish1, dish2, dish1)
+            arrayOf(dish1, dish2, dish1, dish2, dish1, dish2, dish3)
         )
 
         //insert list into db

@@ -38,7 +38,8 @@ object MealPlanInterface {
             selectionArgs,
             null,
             null,
-            "${MealPlanTable.TABLE_NAME}.${MealPlanTable.COLUMN_ID}, ${DishTable.TABLE_NAME}.${DishTable.COLUMN_ID}"
+            "${MealPlanDishTable.TABLE_NAME}.${MealPlanDishTable.COLUMN_MEALPLAN_ID}," +
+                    " ${MealPlanDishTable.TABLE_NAME}.${MealPlanDishTable.COLUMN_DISH_ID}"
         )
 
         val mealplans = mutableListOf<MealPlan>()
@@ -46,7 +47,6 @@ object MealPlanInterface {
         var currentDishes = mutableListOf<Dish>()
         var currentDish: Dish? = null
 
-        var teller = 1
         while (cursor.moveToNext()) {
             val mealPlanId =
                 cursor.getInt(cursor.getColumnIndex(MealPlanTable.COLUMN_ID))
@@ -153,6 +153,9 @@ object MealPlanInterface {
 
         // Add the final mealplan to the result (if there was one)
         currentMealPlan?.let {
+            currentDish?.let { dish ->
+                currentDishes += dish
+            }
             it.dishes = currentDishes.toTypedArray()
             mealplans.add(it)
             currentDishes.clear()

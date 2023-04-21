@@ -59,6 +59,8 @@ class DishMock(private val context: Context) {
         //insert list into db
         DishInterface.insertItem(dish1)
         DishInterface.insertItem(dish2)
+        dish2.name = "mijnen derde zeker"
+        DishInterface.insertItem(dish2)
     }
 
     fun logMocks() : Dish {
