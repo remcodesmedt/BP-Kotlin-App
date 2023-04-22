@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
 class DishMock(private val context: Context) {
-    private fun imageToByteArray(id: Int):ByteArray {
+    private fun imageToByteArray(id: Int): ByteArray {
         val inputStream: InputStream = context.resources.openRawResource(id)
         val bitmap = BitmapFactory.decodeStream(inputStream)
         val stream = ByteArrayOutputStream()
@@ -20,16 +20,8 @@ class DishMock(private val context: Context) {
     }
 
     fun insertMocks() {
-        //for ingredient, only id matters, category could be anything rn
-        val ingrAmount1 = IngredientAmount(
-            0,
-            Ingredient(2, "", EUnit.g, IngredientCategory(0, "")), 125.0
-        )
-
-        val ingrAmount2 = IngredientAmount(
-            0,
-            Ingredient(1, "", EUnit.ml, IngredientCategory(0, "")), 200.0
-        )
+        val ingrAmount1 = IngredientAmount(0, Ingredient(2), 125.0)
+        val ingrAmount2 = IngredientAmount(0, Ingredient(1), 200.0)
 
         val image1 = imageToByteArray(R.raw.dishimg1)
         val image2 = imageToByteArray(R.raw.dishimg2)
@@ -63,7 +55,7 @@ class DishMock(private val context: Context) {
         DishInterface.insertItem(dish2)
     }
 
-    fun logMocks() : Dish {
+    fun logMocks(): Dish {
         Log.i("nice", "Dish----------------------------------------")
 
         //get dishes from the db
