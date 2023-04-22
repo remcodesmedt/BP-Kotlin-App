@@ -6,5 +6,5 @@ class MealPlan(
     var id: Int,
     var startDate: LocalDate,
     var endDate: LocalDate,
-    var dishes: Array<Dish?> = Array(7){null}
+    var dishes: List<Dish>
 )

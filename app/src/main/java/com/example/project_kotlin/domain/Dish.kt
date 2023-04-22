@@ -7,7 +7,7 @@ class Dish(
     var image: ByteArray,
     var preparationTime: Int?,
     var servings: Int,
-    var instructions: List<String>?, //wordt JSON in db
+    var instructions: List<String>, //wordt JSON in db
     var ingredients: List<IngredientAmount>,
 ){
     constructor(id: Int) : this(
@@ -17,7 +17,7 @@ class Dish(
         image = byteArrayOf(),
         preparationTime = null,
         servings = 0,
-        instructions = null,
+        instructions = emptyList(),
         ingredients = emptyList()
     )
 }
