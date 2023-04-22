@@ -105,6 +105,9 @@ object MealPlanInterface {
             if (currentMealPlan?.id != mealPlanId) {
                 // If not, add the previous mealplan to the result (if there was one)
                 currentMealPlan?.let {
+                    currentDish?.let {
+                        currentDishes += it
+                    }
                     it.dishes = currentDishes.toTypedArray()
                     mealplans.add(it)
                     currentDishes.clear()
@@ -153,8 +156,8 @@ object MealPlanInterface {
 
         // Add the final mealplan to the result (if there was one)
         currentMealPlan?.let {
-            currentDish?.let { dish ->
-                currentDishes += dish
+            currentDish?.let {
+                currentDishes += it
             }
             it.dishes = currentDishes.toTypedArray()
             mealplans.add(it)
