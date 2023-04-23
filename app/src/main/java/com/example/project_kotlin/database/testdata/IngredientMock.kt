@@ -10,9 +10,9 @@ object IngredientMock {
     fun insertMocks() {
         //create all mock ingredient objects, just use id=0, it doesn't matter because it's autoincrement
         val ingredients = listOf(
-            Ingredient(0, "kweetni", EUnit.g, IngredientCategory(2)), //only id matters for category
-            Ingredient(0, "kweetni part 2", EUnit.ml, IngredientCategory(5)),
-            Ingredient(0, "kweetni part 500", EUnit.g, IngredientCategory(6))
+            Ingredient(0, "Appel", EUnit.g, IngredientCategory(2)), //only id matters for category
+            Ingredient(0, "Melk", EUnit.ml, IngredientCategory(5)),
+            Ingredient(0, "Aardappel", EUnit.g, IngredientCategory(1))
         )
 
         ingredients.forEach {

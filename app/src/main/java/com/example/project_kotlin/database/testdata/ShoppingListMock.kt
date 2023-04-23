@@ -10,8 +10,8 @@ object ShoppingListMock {
         val ingrAmount1 = IngredientAmount(0, Ingredient(2), 25.0)
         val ingrAmount2 = IngredientAmount(0, Ingredient(1), 25.0)
 
-        val shoppingList1 = ShoppingList(0, "mijne lijst", listOf(ingrAmount1, ingrAmount2))
-        val shoppingList2 = ShoppingList(0, "mijne lijst part 2", listOf(ingrAmount2, ingrAmount1))
+        val shoppingList1 = ShoppingList(0, "mijn lijst", listOf(ingrAmount1, ingrAmount2))
+        val shoppingList2 = ShoppingList(0, "mijn tweede lijst", listOf(ingrAmount2, ingrAmount1))
 
         //insert list into db
         ShoppingListInterface.insertItem(shoppingList1)

@@ -29,9 +29,9 @@ class DishMock(private val context: Context) {
         val dish1 = Dish(
             0,
             "mijn dish",
-            "leuke dish",
+            "makkelijk te maken",
             image1,
-            15,
+            10,
             2,
             listOf("verwarm de oven voor", "zet de ingredienten in de oven", "bon appetit"),
             listOf(ingrAmount1, ingrAmount2)
@@ -40,7 +40,7 @@ class DishMock(private val context: Context) {
         val dish2 = Dish(
             0,
             "mijn tweede dish",
-            "minder leuke dish",
+            "lekker!",
             image2,
             30,
             1,
