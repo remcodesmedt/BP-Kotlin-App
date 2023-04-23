@@ -21,14 +21,14 @@ object MealPlanMock {
             0,
             startDate,
             endDate,
-            arrayOf(dish1, dish2, dish1, dish2, dish1, dish2, dish3)
+            listOf(dish1, dish2, dish1, dish2, dish1, dish2, dish3)
         )
 
         val mealplan2 = MealPlan(
             0,
             startDate.plusWeeks(1),
             endDate.plusWeeks(1),
-            arrayOf(dish1, dish2, dish1, dish2, dish1, dish2, dish3)
+            listOf(dish1, dish2, dish1, dish2, dish1, dish2, dish3)
         )
 
         //insert list into db
@@ -36,20 +36,30 @@ object MealPlanMock {
         MealPlanInterface.insertItem(mealplan2)
     }
 
-    fun logMocks() {
-        Log.i("nice", "MealPlan----------------------------------------")
+    fun getLogsMocks(): String {
+        var output = ""
 
-        //get mealplans from the db
         val mealPlans = MealPlanInterface.getItems(null)
+
         mealPlans.forEach { mealPlan ->
-            Log.i("nice", "mealplan ${mealPlan.id}: week van ${mealPlan.startDate} - ${mealPlan.endDate}")
+            output +=
+                "mealplan ${mealPlan.id}: week van ${
+                    mealPlan.startDate.toString().substring(0, 10)
+                }\n"
+            " - ${mealPlan.endDate.toString().substring(0, 10)}\n"
+
             var i = 1;
             mealPlan.dishes.forEach {
-                Log.i("nice", "-Dish ${i++}: ")
-                it?.ingredients?.forEach {
-                    Log.i("nice", "--${it.ingredient.name}: ${it.amount}${it.ingredient.unit}")
+                output += "-Dish ${i++}: \n"
+                it.ingredients.forEach { ingr ->
+                    output +=
+                        "--${ingr.ingredient.name}: ${ingr.amount}${ingr.ingredient.unit}\n"
                 }
             }
+            output += "\n"
         }
+
+        output += "\n"
+        return output
     }
 }

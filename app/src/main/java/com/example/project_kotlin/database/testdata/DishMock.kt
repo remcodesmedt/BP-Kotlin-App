@@ -55,34 +55,31 @@ class DishMock(private val context: Context) {
         DishInterface.insertItem(dish2)
     }
 
-    fun logMocks(): Dish {
-        Log.i("nice", "Dish----------------------------------------")
+    fun getLogsMocks(): String {
+        var output = ""
 
-        //get dishes from the db
         val dishes = DishInterface.getItems()
 
-        //just log them for now
         for (dish in dishes) {
-            Log.i(
-                "nice",
-                "${dish.id}: ${dish.name}, ${dish.description}, ${dish.image}, " +
-                        "${dish.preparationTime}, ${dish.servings}"
-            )
+            output += "${dish.id}: ${dish.name}, ${dish.description}, " +
+                    "Tijd: ${dish.preparationTime}, Personen: ${dish.servings}\n"
 
-            dish.instructions?.let {
-                Log.i("nice", "instructions:\n")
-                var i = 1
-                for (instr in it) {
-                    Log.i("nice", "- Step ${i++}: $instr")
-                }
+            output += "instructies:\n";
+            var i = 1
+            for (instr in dish.instructions) {
+                output += "- Step ${i++}: $instr\n"
             }
 
-            Log.i("nice", "ingredients:\n")
-            for (i in dish.ingredients) {
-                Log.i("nice", "- ${i.ingredient.name}: ${i.amount}${i.ingredient.unit}")
+            output += "ingredients:\n";
+            for (ingr in dish.ingredients) {
+                output +=
+                    "- ${ingr.ingredient.name}: ${ingr.amount}${ingr.ingredient.unit}\n"
             }
+            output += "\n"
         }
-        return dishes.first()
+
+        output += "\n"
+        return output
     }
 
 }

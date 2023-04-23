@@ -108,7 +108,7 @@ object MealPlanInterface {
                     currentDish?.let {
                         currentDishes += it
                     }
-                    it.dishes = currentDishes.toTypedArray()
+                    it.dishes = currentDishes.toList()
                     mealplans.add(it)
                     currentDishes.clear()
                 }
@@ -126,7 +126,7 @@ object MealPlanInterface {
                 )
 
                 currentMealPlan = MealPlan(
-                    mealPlanId, mpStartDate, mpEndDate, arrayOf(currentDish)
+                    mealPlanId, mpStartDate, mpEndDate, listOf(currentDish)
                 )
             } else { //same mealplan, so update the dishes OR update the dish its ingredients
                 // Check if we're still processing the same dish
@@ -159,7 +159,7 @@ object MealPlanInterface {
             currentDish?.let {
                 currentDishes += it
             }
-            it.dishes = currentDishes.toTypedArray()
+            it.dishes = currentDishes.toList()
             mealplans.add(it)
             currentDishes.clear()
         }
@@ -170,10 +170,6 @@ object MealPlanInterface {
     }
 
     fun insertItem(mealPlan: MealPlan) {
-        if (mealPlan.dishes.contains(null)) {
-            throw Error("no null dishes!!")
-        }
-
         val db = DBHelper.getDB()
 
         // Create a ContentValues object to hold the values to insert

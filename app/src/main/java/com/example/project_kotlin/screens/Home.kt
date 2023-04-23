@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.project_kotlin.database.DBHelper
 import com.example.project_kotlin.database.testdata.*
 import com.example.project_kotlin.databinding.FragmentHomeBinding
 import kotlinx.coroutines.*
@@ -27,18 +28,29 @@ class Home : Fragment() {
     }
 
     private fun setupOnClickListeners() {
-        binding.FABAddDataDb.setOnClickListener {
+        binding.btnCreateDB.setOnClickListener {
+            DBHelper.init(requireContext())
+            binding.txtOutput.text = "Database gecreëerd!"
+        }
+
+        binding.btnInsertIntoDB.setOnClickListener {
+            binding.txtOutput.text = "Data toevoegen..."
             CoroutineScope(Dispatchers.IO).launch {
-                fillDb()
-                withContext(Dispatchers.Main) {
-                    binding.txtHome.text = "done, see logs \"nice\""
+                try {
+                    fillDb()
+                    withContext(Dispatchers.Main) {
+                        binding.txtOutput.text = "Data ingevoerd!"
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        binding.txtOutput.text = "Databank nog niet aangemaakt!"
+                    }
                 }
-                logItems()
+
             }
         }
 
     }
-
 
     private fun fillDb() {
         IngredientCategoryMock.insertMocks()
@@ -46,18 +58,6 @@ class Home : Fragment() {
         ShoppingListMock.insertMocks()
         DishMock(requireContext()).insertMocks()
         MealPlanMock.insertMocks()
-    }
-
-    private fun logItems() {
-        IngredientCategoryMock.logMocks()
-        IngredientMock.logMocks()
-        ShoppingListMock.logMocks()
-        val dish = DishMock(requireContext()).logMocks()
-        val bitmap = BitmapFactory.decodeByteArray(dish.image, 0, dish.image.size)
-        activity?.runOnUiThread{
-            binding.testImage.setImageBitmap(bitmap)
-        }
-        MealPlanMock.logMocks()
     }
 
 }

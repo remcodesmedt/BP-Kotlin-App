@@ -7,7 +7,7 @@ import com.example.project_kotlin.domain.Ingredient
 import com.example.project_kotlin.domain.IngredientCategory
 
 object IngredientMock {
-    fun insertMocks(){
+    fun insertMocks() {
         //create all mock ingredient objects, just use id=0, it doesn't matter because it's autoincrement
         val ingredients = listOf(
             Ingredient(0, "kweetni", EUnit.g, IngredientCategory(2)), //only id matters for category
@@ -15,20 +15,22 @@ object IngredientMock {
             Ingredient(0, "kweetni part 500", EUnit.g, IngredientCategory(6))
         )
 
-        ingredients.forEach{
+        ingredients.forEach {
             //insert them into the db
             IngredientInterface.insertItem(it)
         }
     }
 
-    fun logMocks(){
-        Log.i("nice", "Ingredient----------------------------------------")
+    fun getLogsMocks(): String {
+        var output = ""
 
-        //get ingredients from the db
         val ingredients = IngredientInterface.getItems()
-        //just log them for now
+
         for (c in ingredients) {
-            Log.i("nice", "${c.id}: ${c.name}, unit: ${c.unit}, category: ${c.category.id} - ${c.category.name}")
+            output +=
+                "${c.id}: ${c.name}, unit: ${c.unit}, category: ${c.category.name}\n"
         }
+
+        return output
     }
 }

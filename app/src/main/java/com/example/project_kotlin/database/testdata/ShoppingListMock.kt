@@ -1,7 +1,6 @@
 package com.example.project_kotlin.database.testdata
 
 import android.util.Log
-import com.example.project_kotlin.database.interfaces.IngredientInterface
 import com.example.project_kotlin.database.interfaces.ShoppingListInterface
 import com.example.project_kotlin.domain.*
 
@@ -19,18 +18,19 @@ object ShoppingListMock {
         ShoppingListInterface.insertItem(shoppingList2)
     }
 
-    fun logMocks() {
-        Log.i("nice", "Shoppinglist----------------------------------------")
+    fun getLogsMocks(): String {
+        var output = ""
 
-        //get shoppinglists from the db
         val shoppingLists = ShoppingListInterface.getItems()
 
-        //just log them for now
         for (l in shoppingLists) {
-            Log.i("nice", "${l.id}: ${l.name}:\n")
-            for (i in l.ingredients){
-                Log.i("nice", "- ${i.ingredient.name}: ${i.amount}${i.ingredient.unit}")
-            }
+            output += "${l.id}: ${l.name}: \n-ingredients:\n";
+            for (i in l.ingredients) {
+                output +=
+                    "-- ${i.ingredient.name}: ${i.amount}${i.ingredient.unit}\n"; }
         }
+
+        output += "\n"
+        return output
     }
 }

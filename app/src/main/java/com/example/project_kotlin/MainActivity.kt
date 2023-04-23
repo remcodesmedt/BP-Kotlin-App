@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(Home())
 
         setBottomNavListener()
-
-        //init the db
-        DBHelper.init(applicationContext)
     }
 
     private fun setBottomNavListener(){
