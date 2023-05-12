@@ -35,7 +35,7 @@ class ExtraImageMock (private val context: Context){
         ExtraImageInterface.insertItem(image3)
         ExtraImageInterface.insertItem(image4)
         ExtraImageInterface.insertItem(image5)
-//        ExtraImageInterface.insertItem(image6)
+        ExtraImageInterface.insertItem(image6)
         ExtraImageInterface.insertItem(image7)
         ExtraImageInterface.insertItem(image8)
         ExtraImageInterface.insertItem(image9)
