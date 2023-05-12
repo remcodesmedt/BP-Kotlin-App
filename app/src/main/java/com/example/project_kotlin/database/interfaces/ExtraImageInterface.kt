@@ -15,43 +15,28 @@ object ExtraImageInterface {
         val db = DBHelper.getDB()
         val columns = ExtraImageTable.COLUMNS_FOR_SELECT
 
-        val amountOfImages = getAmountOfEntries()
-        val images = mutableListOf<ExtraImage>()
-
-        for (i in 0 until amountOfImages) {
-            val cursor = db.query(
+        val cursor =
+            db.query(
                 ExtraImageTable.TABLE_NAME,
                 columns,
                 null,
                 null,
                 null,
                 null,
-                null,
-                "$i,1" // Set the OFFSETand LIMIT to retrieve the current row
+                null
             )
 
-            if (cursor.moveToFirst()) {
-                val img = cursor.getBlob(cursor.getColumnIndex(ExtraImageTable.COLUMN_IMAGE))
-                images.add(ExtraImage(image = img))
-            }
+        val images = mutableListOf<ExtraImage>()
 
-            cursor.close()
+        while (cursor.moveToNext()){
+            val id = cursor.getInt(cursor.getColumnIndex(ExtraImageTable.COLUMN_ID))
+            val img = cursor.getBlob(cursor.getColumnIndex(ExtraImageTable.COLUMN_IMAGE))
+            images.add(ExtraImage(image = img))
         }
+
+        cursor.close()
 
         return images
-    }
-
-
-
-    private fun getAmountOfEntries(): Int {
-        val db = DBHelper.getDB()
-        val cursor = db.rawQuery("select count(*) from ${ExtraImageTable.TABLE_NAME}", null)
-        var entryCount = 0
-        if (cursor.moveToFirst()) {
-            entryCount = cursor.getInt(0)
-        }
-        cursor.close()
-        return entryCount
     }
 
     @SuppressLint("Range")
