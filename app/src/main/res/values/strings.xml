@@ -10,4 +10,5 @@
     <string name="createDbString">Druk hier om de databank te creëren</string>
     <string name="insertIntoDBString">Druk hier om de databank te vullen!</string>
     <string name="druk_hier_om_de_databank_te_vullen_met_extra_images">Druk hier om de databank te vullen met extra images!</string>
+    <string name="druk_hier_om_de_images_te_bekijken">Druk hier om de images te bekijken</string>
 </resources>
